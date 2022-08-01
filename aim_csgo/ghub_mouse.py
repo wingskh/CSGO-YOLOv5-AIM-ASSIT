@@ -6,7 +6,7 @@ dlldir = path.join(basedir, 'ghub_mouse.dll')
 dlldir2 = path.join(basedir, 'LogitechGkey.dll')
 
 
-# ↓↓↓↓↓↓↓↓↓ 简易鼠标行为模拟,使用SendInput函数或者调用ghub驱动 ↓↓↓↓↓↓↓↓↓
+# ↓↓↓↓↓↓↓↓↓ 簡易鼠標行為模擬,使用SendInput函數或者調用ghub驅動 ↓↓↓↓↓↓↓↓↓
 LONG = c_long
 DWORD = c_ulong
 ULONG_PTR = POINTER(DWORD)
@@ -80,4 +80,4 @@ def mouse_up(key = 1):  # for import
 def mouse_close():  # for import
     if gmok:
         return gm.mouse_close()
-# ↑↑↑↑↑↑↑↑↑ 简易鼠标行为模拟,使用SendInput函数或者调用ghub驱动 ↑↑↑↑↑↑↑↑↑
+# ↑↑↑↑↑↑↑↑↑ 簡易鼠標行為模擬,使用SendInput函數或者調用ghub驅動 ↑↑↑↑↑↑↑↑↑

@@ -11,7 +11,7 @@ import win32api
 def grab_screen_win32(region):
     hwin = win32gui.GetDesktopWindow()
     left, top, x2, y2 = region
-    width = x2 - left + 1  # 少取一像素，无所谓
+    width = x2 - left + 1  # 少取一像素，無所謂
     height = y2 - top + 1
 
     hwindc = win32gui.GetWindowDC(hwin)

@@ -1,4 +1,4 @@
-from aim_csgo.apex_aim import lock
+from aim_csgo.lock_aim import lock
 from aim_csgo.screen_inf import grab_screen_mss, grab_screen_win32, get_parameters
 from aim_csgo.cs_model import load_model
 import cv2
@@ -106,7 +106,6 @@ def on_click(x, y, button, pressed):
 listener = pynput.mouse.Listener(on_click=on_click)
 listener.start()
 
-# print('enjoy yourself!')
 t0 = time.time()
 cnt = 0
 
