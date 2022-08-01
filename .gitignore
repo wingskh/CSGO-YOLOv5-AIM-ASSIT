@@ -1,0 +1,5 @@
+*.exe
+./weights/*
+./venv/*
+*.pt
+*.pyc
