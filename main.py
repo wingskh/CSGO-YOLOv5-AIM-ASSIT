@@ -17,30 +17,29 @@ import os
 from simple_pid import PID
 parser = argparse.ArgumentParser()
 parser.add_argument('--model-path', type=str, default='weights/final.pt', help='模型位址 model address')
-parser.add_argument('--imgsz', type=int, default=640, help='和訓練模型时imgsz一樣')
+parser.add_argument('--imgsz', type=int, default=640, help='和訓練模型時imgsz一樣')
 parser.add_argument('--conf-thres', type=float, default=0.1, help='置信閥值')
 parser.add_argument('--iou-thres', type=float, default=0.45, help='交並比閥值')
 parser.add_argument('--use-cuda', type=bool, default=True, help='是否使用cuda') 
 
 parser.add_argument('--show-window', type=bool, default=False, help='是否顯示實時檢測窗口(debug用,若是True,不要去點右上角的X)')
 parser.add_argument('--top-most', type=bool, default=True, help='是否保持窗口置頂')
-parser.add_argument('--resize-window', type=float, default=1/2, help='缩放窗口大小')
+parser.add_argument('--resize-window', type=float, default=1/2, help='縮放窗口大小')
 parser.add_argument('--thickness', type=int, default=5, help='邊框粗細，需大於1/resize-window')
 parser.add_argument('--show-fps', type=bool, default=False, help='是否顯示fps')
 parser.add_argument('--show-label', type=bool, default=False, help='是否顯示標籤')
 
-parser.add_argument('--use_mss', type=str, default=False, help='是否使用mss截圖；为False時使用win32截圖')
+parser.add_argument('--use_mss', type=str, default=False, help='是否使用mss截圖；為False時使用win32截圖')
 
-parser.add_argument('--region', type=tuple, default=(0.18, 0.35), help='檢測範圍；分别为x軸和y軸，(1.0, 1.0)表示全屏檢測，越低檢測範圍越小(以屏幕中心為檢測中心)')
+parser.add_argument('--region', type=tuple, default=(0.18, 0.35), help='檢測範圍；分別為x軸和y軸，(1.0, 1.0)表示全屏檢測，越低檢測範圍越小(以屏幕中心為檢測中心)')
 
 parser.add_argument('--hold-lock', type=bool, default=True, help='lock模式；True為按住，False為切換')
 parser.add_argument('--lock-sen', type=float, default= 3.0, help='lock幅度系數,遊戲中靈敏度(建議不要調整)')
-parser.add_argument('--lock-smooth', type=float, default=1.9, help='lock平滑系数；越大越平滑')
-parser.add_argument('--lock-button', type=str, default='x2', help='lock按鍵；只支持鼠標按键')
+parser.add_argument('--lock-smooth', type=float, default=1.9, help='lock平滑係數；越大越平滑')
+parser.add_argument('--lock-button', type=str, default='x2', help='lock按鍵；只支持鼠標按鍵')
 parser.add_argument('--head-first', type=bool, default=False, help='是否優先瞄頭')
 parser.add_argument('--lock-tag', type=list, default=[0], help='對應標籤；person(若模型不同請自行修改對應標籤)')
-parser.add_argument('--lock-choice', type=list, default=[0], help='目標選擇；决定鎖定的目標，從自己的標籤中選')
-
+parser.add_argument('--lock-choice', type=list, default=[0], help='目標選擇；決定鎖定的目標，從自己的標籤中選')
 args = parser.parse_args()
 
 '------------------------------------------------------------------------------------'
@@ -101,7 +100,7 @@ def on_click(x, y, button, pressed):
         else:
             if pressed:
                 lock_mode = not lock_mode
-                print('1lock mode', 'on' if lock_mode else 'off')
+                print('lock mode (not hold)', 'on' if lock_mode else 'off')
 
 listener = pynput.mouse.Listener(on_click=on_click)
 listener.start()
@@ -109,8 +108,8 @@ listener.start()
 t0 = time.time()
 cnt = 0
 
+print("Start...")
 while True:
-
     if cnt % 20 == 0:
         top_x, top_y, x, y = get_parameters()
         len_x, len_y = int(x * args.region[0]), int(y * args.region[1])
